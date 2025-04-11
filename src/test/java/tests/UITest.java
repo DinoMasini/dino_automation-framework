@@ -1,64 +1,36 @@
 package tests;
 
+/*
+METODI DI TEST: Annotati con @Test, contengono la logica che esegue il test.
+
+e.g.
+openSite()
+
+LE ASSERZIONI: Verifica che i risultati siano corretti (titolo, contenuto, visibilità, ecc.).
+
+Il setup e teardown: Operazioni che vanno fatte prima e dopo ogni test (ad esempio, avvio e chiusura del driver).
+
+Interazione con la pagina: La logica di navigazione o interazione con la UI, ma sempre utilizzando i metodi della HomePage (o altre pagine), non direttamente nella classe di test
+ */
+
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.ConfigReader;
+import pages.HomePage;
+import io.qameta.allure.Description;
+import org.junit.jupiter.api.DisplayName;
 
 public class UITest extends BaseTest {
 
     @Test
-    public void openSite() {
-        driver.get(ConfigReader.get("baseUrl"));
-        String title = driver.getTitle();
-        Assert.assertTrue(driver.getTitle().contains("Automation"));
+    @DisplayName("Open site")
+    @Description("This test verifies that the site title contains 'Automation'")
+    public void verifySiteTitle() {
+        executeTest(() -> {new HomePage(driver)
+            .openSite()
+            .isSiteTitleContainsAutomation();
+        });
     }
 }
-
-//    protected void setupTest() {
-//        PropertyConfigurator.configure("./src/main/resources/logback.xml");
-//        Log.info("Logger was set up");
-//        SeleniumDriverManager.initDriver();
-//        Log.info("Driver configured and started");
-//    }
-
-//    protected void executeTest(TestExecutor testExecutor) {
-//        String className = getClass().getSimpleName();
-//        String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
-//        try {
-//            this.testWasFailed = false;
-//            Log.info("### TEST  " + className + "." + methodName + "  STARTED ###");
-//            testExecutor.executeTest();
-//            Log.info("### TEST " + className + "." + methodName + " FINISHED WITHOUT ERRORS ###\n" +
-//                    "⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ \n" +
-//                    "⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ \n" +
-//                    "⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
-//                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉");
-//            attachLog();
-//            Log.printLogs();
-//        } catch (Exception | Error e) {
-//            attachScreenshot();
-//            attachLog();
-//            Log.printLogs();
-//            RemoteWebDriver remoteWebDriver = (RemoteWebDriver) SeleniumDriverManager
-//                    .getDriverInThreadLocal();
-//            this.sessionId = remoteWebDriver.getSessionId();
-//            this.testWasFailed = true;
-//            Log.info("TEST FAILED: " + className + "." + methodName);
-//            fail(className + "." + methodName + " Failed with an Exception or Error: " + e.getMessage());
-//        }
-//    }
 
 
 
