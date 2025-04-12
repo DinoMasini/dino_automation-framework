@@ -19,7 +19,7 @@ import pages.HomePage;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 
-public class UITest extends BaseTest {
+public class HomePageTest extends BaseTest {
 
     @Test
     @DisplayName("Open site")

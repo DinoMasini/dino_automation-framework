@@ -15,6 +15,7 @@ public class DriverManager {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--start-maximized");
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         }
         return driver;
