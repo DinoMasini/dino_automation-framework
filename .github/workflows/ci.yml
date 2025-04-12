@@ -30,3 +30,14 @@ jobs:
 
       - name: Run Maven tests
         run: mvn clean test
+
+      # Step to generate Allure report
+      - name: Generate Allure Report
+        run: mvn allure:serve
+
+      # Save Allure report as artifact
+      - name: Upload Allure Report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/allure-report
