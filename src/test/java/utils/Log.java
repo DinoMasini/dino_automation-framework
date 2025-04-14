@@ -35,9 +35,12 @@ public class Log {
     public static synchronized void printLogs() {
         System.out.println("=================\nALL COMBINED LOGS\n=================");
         System.out.println(logs.get().toString());
-        // Pulisci il buffer e rimuovi la ThreadLocal
         logs.get().setLength(0);
         logs.remove();
+    }
+
+    public static synchronized String getLogs(){
+        return logs.get().toString();
     }
 
     private static String getCurrentTime() {

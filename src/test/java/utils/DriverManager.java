@@ -7,24 +7,25 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
 
-    private static WebDriver driver;
+    // ThreadLocal per garantire un WebDriver per ogni thread --> prima stavo usando solo private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-            WebDriverManager.chromedriver().setup(); // settaggio con WebDriverManager
+        if (driver.get() == null) {
+            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--start-maximized");
             options.addArguments("--headless");
-            driver = new ChromeDriver(options);
+            driver.set(new ChromeDriver(options));
         }
-        return driver;
+        return driver.get();
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove(); // rimuove il riferimento dal thread corrente
         }
     }
 }
