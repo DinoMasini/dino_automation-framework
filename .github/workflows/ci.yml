@@ -43,20 +43,3 @@ jobs:
           path: target/site/allure-maven-plugin
           # Before it was:   path: target/allure-report
 
-deploy:
-  needs: test
-  runs-on: ubuntu-latest
-  if: github.ref == 'refs/heads/master'
-
-  steps:
-    - name: Download Allure report artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: allure-report
-        path: ./allure-report
-
-    - name: Deploy Allure report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
