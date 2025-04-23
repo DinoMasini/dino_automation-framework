@@ -14,13 +14,17 @@ Interazione con la pagina: La logica di navigazione o interazione con la UI, ma 
  */
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 
 public class HomePageTest extends BaseTest {
 
+    @Epic("UI Test")
+    @Feature("Home Page")
+    @Story("Verify visibility title: home")
+    @Severity(SeverityLevel.MINOR)
     @Test
     @DisplayName("Open site")
     @Description("This test verifies that the site title contains 'Automation'")

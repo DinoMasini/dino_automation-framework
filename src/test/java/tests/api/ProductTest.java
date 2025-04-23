@@ -1,9 +1,7 @@
 package tests.api;
 
 import facade.GetProducts;
-import lombok.SneakyThrows;
-import models.Product;
-import models.ProductResponse;
+import models.products.ProductResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

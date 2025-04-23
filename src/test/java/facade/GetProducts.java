@@ -4,7 +4,7 @@ import base.IRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import models.ProductResponse;
+import models.products.ProductResponse;
 import utils.DataUtils;
 
 public class GetProducts implements IRequest<ProductResponse> {
@@ -21,7 +21,8 @@ public class GetProducts implements IRequest<ProductResponse> {
 
         String htmlBody = response.getBody().asString();
 
-        // Estrai solo il JSON da <body>{...}</body>
+        // Estraggo solo il JSON da <body>{...}</body>
+        // USO REGEX
         String json = htmlBody.replaceAll("(?s).*<body>(\\{.*?})</body>.*", "$1");
 
         try {
