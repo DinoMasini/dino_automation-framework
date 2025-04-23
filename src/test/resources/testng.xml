@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Automation Test Suite" verbose="1" >
-    <test name="Functional Tests"  >
+<suite name="Automation Test Suite" verbose="1">
+    <test name="Functional Tests">
         <classes>
             <class name="tests.ui.HomePageTest" />
         </classes>
