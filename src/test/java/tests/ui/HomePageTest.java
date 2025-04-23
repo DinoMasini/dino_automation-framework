@@ -17,7 +17,6 @@ import base.BaseTest;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import org.junit.jupiter.api.DisplayName;
 
 public class HomePageTest extends BaseTest {
 
@@ -26,7 +25,6 @@ public class HomePageTest extends BaseTest {
     @Story("Verify visibility title: home")
     @Severity(SeverityLevel.MINOR)
     @Test
-    @DisplayName("Open site")
     @Description("This test verifies that the site title contains 'Automation'")
     public void verifySiteTitle() {
         executeTest(() -> {new HomePage(driver)
