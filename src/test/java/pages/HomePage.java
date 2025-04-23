@@ -60,7 +60,7 @@ public class HomePage {
 
     @Step("Opening the site")
     public HomePage openSite() {
-        driver.get(ConfigReader.get("baseUrl"));
+        driver.get(ConfigReader.get("ui.baseUrl"));
         Log.info("The site is opened correctly!");
         return this;
     }

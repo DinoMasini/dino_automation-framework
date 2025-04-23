@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 /*
 METODI DI TEST: Annotati con @Test, contengono la logica che esegue il test.

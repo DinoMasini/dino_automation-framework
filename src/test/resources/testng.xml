@@ -3,7 +3,7 @@
 <suite name="Automation Test Suite" verbose="1" >
     <test name="Functional Tests"  >
         <classes>
-            <class name="tests.HomePageTest" />
+            <class name="tests.ui.HomePageTest" />
         </classes>
     </test>
 </suite>
