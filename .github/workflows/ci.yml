@@ -2,37 +2,34 @@ name: Run Selenium Tests (Headless)
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 🧾 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: ☕ Set up Java 21 (Temurin)
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Set up Chrome
+      - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@latest
 
-      - name: Verify Chrome installation
+      - name: ✅ Verify Chrome installation
         run: google-chrome --version
 
-      - name: Run Maven tests
+      - name: 🧪 Run Maven Tests
         run: mvn clean test
 
-      # Step to generate Allure report
-      - name: Generate Allure Report
+      - name: 🧱 Generate Allure Report
         run: mvn allure:report
 
       # Save Allure report as artifact
